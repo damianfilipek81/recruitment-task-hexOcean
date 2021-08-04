@@ -5,6 +5,8 @@ import { createGlobalStyle } from "styled-components";
 import { Home } from "./components/views/Home/Home";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 const Root = styled.div`
   background: #3a3c3e;
@@ -21,22 +23,24 @@ body{
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#fff'
+      main: "#bbb",
     },
     secondary: {
-      main: '#F80808'
+      main: "#F80808",
     },
-  }
+  },
 });
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Root>
-        <Global />
-        <MainLayout>
-          <Home />
-        </MainLayout>
-      </Root>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Root>
+          <Global />
+          <MainLayout>
+            <Home />
+          </MainLayout>
+        </Root>
+      </MuiPickersUtilsProvider>
     </ThemeProvider>
   );
 };
