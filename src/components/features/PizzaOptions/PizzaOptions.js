@@ -2,7 +2,7 @@ import React from "react";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { Field } from "react-final-form";
 import PropTypes from "prop-types";
-import {TextFieldRoot, FormControlRoot} from '../common/FormStyles';
+import {TextFieldRoot, FormControlRoot} from '../../common/FormStyles';
 import { useTheme } from "@material-ui/core/styles";
 
 const PizzaOptions = ({ required }) => {

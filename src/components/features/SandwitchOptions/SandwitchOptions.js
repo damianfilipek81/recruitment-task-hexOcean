@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from 'react-final-form';
 import PropTypes from 'prop-types';
-import {TextFieldRoot} from '../common/FormStyles';
+import {TextFieldRoot} from '../../common/FormStyles';
 import { useTheme } from "@material-ui/core/styles";
 
 const SandwitchOptions = ({ required }) => {

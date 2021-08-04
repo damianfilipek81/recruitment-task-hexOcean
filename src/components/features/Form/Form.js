@@ -1,22 +1,16 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Form as FormField, Field } from "react-final-form";
 import {
-  Button,
   FormControl,
-  MenuItem,
   InputLabel,
+  MenuItem,
   Select,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import PizzaOptions from '../PizzaOptions/PizzaOptions';
-import {TextFieldRoot, TimePickerRoot, FormControlRoot} from '../common/FormStyles';
+import {TextFieldRoot, TimePickerRoot, FormControlRoot, FormRoot, ButtonRoot} from '../../common/FormStyles';
 import SandwitchOptions from "../SandwitchOptions/SandwitchOptions";
 import SoupOptions from "../SoupOptions/SoupOptions";
-
-const FormRoot = styled.form`
-  display: grid;
-`;
 
 const Form = () => {
   const theme = useTheme().palette.primary;
@@ -93,7 +87,7 @@ const Form = () => {
 
               return (
                 <FormControlRoot fontcolor={theme.main}>
-                  <InputLabel id="dish_type">Dish type</InputLabel>
+                  <InputLabel id="dish_type" error={error && touched && true}>Dish type</InputLabel>
                   <Select
                     error={error && touched && true}
                     name={name}
@@ -120,7 +114,7 @@ const Form = () => {
                    }
                 </FormControl>
             })}
-          <Button type="submit">Send</Button>
+          <ButtonRoot type="submit">Send</ButtonRoot>
         </FormRoot>
       )}
     </FormField>

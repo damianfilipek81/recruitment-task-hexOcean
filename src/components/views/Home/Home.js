@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import BackgroundVideo from "../../features/BackgroundVideo/BackgroundVideo";
 import Form from "../../features/Form/Form";
 
 const Root = styled.div`
@@ -12,7 +13,9 @@ const Root = styled.div`
 export const Home = () => {
   return (
     <Root>
-      <Form />
+      <BackgroundVideo>
+        <Form />
+      </BackgroundVideo>
     </Root>
   );
 };

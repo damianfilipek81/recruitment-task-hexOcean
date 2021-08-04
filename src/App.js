@@ -29,6 +29,7 @@ const theme = createTheme({
       main: "#F80808",
     },
   },
+  color: 'linear-gradient(90deg, rgba(196,76,184,1) 0%, rgba(121,9,115,1) 50%, rgba(221,0,134,1) 100%)'
 });
 const App = () => {
   return (

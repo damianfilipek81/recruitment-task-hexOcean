@@ -2,7 +2,7 @@ import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import { Field } from 'react-final-form';
 import PropTypes from 'prop-types';
-import {SliderRoot, InputLabelRoot} from '../common/FormStyles';
+import {SliderRoot, InputLabelRoot} from '../../common/FormStyles';
 import { useTheme } from "@material-ui/core/styles";
 
 const SoupOptions = ({ required }) => {
@@ -15,7 +15,6 @@ const SoupOptions = ({ required }) => {
   const composeValidators = (...validators) => value =>
     validators.reduce((error, validator) => error || validator(value), undefined)
     const theme = useTheme().palette.primary;
-
   return (
     <FormControl>
       <InputLabelRoot id='spiciness' fontcolor={theme.main}>Spiciness scale</InputLabelRoot>
