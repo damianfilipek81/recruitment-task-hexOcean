@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchSendForm } from "../../../redux/formRedux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSendForm, getLoadingData } from "../../../redux/formRedux";
 import { Form as FormField, Field } from "react-final-form";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
@@ -23,7 +23,7 @@ const Form = () => {
   const [dishType, setDishType] = useState(null);
   const [formSent, setFormSent] = useState(false);
   const dispatch = useDispatch();
-
+  const loading = useSelector(getLoadingData).error;
   const dishTypes = ["pizza", "soup", "sandwich"];
   const newDate = new Date(0);
   const required = (value) => (value ? undefined : "Required");
@@ -46,7 +46,7 @@ const Form = () => {
     }
     dispatch(fetchSendForm(data));
     setFormSent(true);
-    setTimeout(() => setFormSent(false), 5000);
+    setTimeout(() => setFormSent(false), 10000);
   };
 
   const handleDishType = (e, onChange) => {
@@ -64,7 +64,12 @@ const Form = () => {
           }}
           theme={theme.light}
         >
-          {formSent && <FormSent theme={theme.main}>Form has been sent! </FormSent>}
+          {formSent && loading === false ? (
+            <FormSent theme={theme.main}>Form has been sent! </FormSent>
+          ) : (
+            formSent &&
+            loading && <FormSent theme={theme.main}>Error! </FormSent>
+          )}
           <Field name="name" validate={required}>
             {(props) => {
               const { name, value, onChange } = props.input;

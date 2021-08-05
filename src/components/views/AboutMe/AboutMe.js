@@ -18,6 +18,8 @@ import javascriptImage from "../../../images/javascript.svg";
 import gitImage from "../../../images/git.png";
 import chaiImage from "../../../images/chai.png";
 import bootstrapImage from "../../../images/bootstrap.svg";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 
 const Overlay = styled.div`
   background-image: url("https://images.pexels.com/photos/2653362/pexels-photo-2653362.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
@@ -53,7 +55,7 @@ const Btn = styled.span`
   cursor: pointer;
   background: ${({ btn, font }) => btn && font};
   color: ${({ btn, background }) => btn && background};
-  ${({btn, font}) => `border-bottom: 2px solid ${font}`};
+  ${({ btn, font }) => `border-bottom: 2px solid ${font}`};
 `;
 
 const ImageWrapper = styled.div`
@@ -69,13 +71,18 @@ const Image = styled.img`
 
 const ContentWrapper = styled.div`
   display: ${({ btn }) => (btn ? `flex` : `none`)};
-  flex-direction: ${({ direction }) => direction && `column`};
+  flex-direction: column;
   padding-top: 15px;
+  align-items: center;
+  justify-content: center;
+  }
 `;
 
 const Text = styled.p`
   font-size: 19px;
   margin: 0;
+  line-height: 25px;
+  padding-bottom: 10px;
 `;
 
 const Icon = styled.img`
@@ -107,6 +114,25 @@ const SkillsContainer = styled.div`
     flex-wrap: wrap;
   }
 `;
+
+const Info = styled.div`
+  display: flex;
+`;
+
+const SocialIconWrapper = styled.a`
+  width: 60px;
+  height: 60px;
+  margin: 40px;
+  color: inherit;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const Social = styled.div`
+  display: flex;
+`;
 const AboutMe = () => {
   const theme = useTheme().palette.secondary;
   const [btn, setBtn] = useState("aboutMe");
@@ -125,13 +151,34 @@ const AboutMe = () => {
               About me
             </Btn>
             <ContentWrapper btn={btn === "aboutMe" && true}>
-              <ImageWrapper>
-                <Image src={image} />
-              </ImageWrapper>
-              <div>
-                <Text>Hi there!</Text>
-                <Text>My name is Damian Filipek and I'm 22 years old.</Text>
-              </div>
+              <Info>
+                <ImageWrapper>
+                  <Image src={image} />
+                </ImageWrapper>
+                <div>
+                  <Text>Hi there!</Text>
+                  <Text>
+                    My name is Damian Filipek and I'm 22 years old. In November
+                    2020 I strated my jurney with programming. Since then I’m
+                    spending 40 to 50 hours per week mastering my skills. In my
+                    portfolio I already have many projects, with which I am very
+                    satisfied and willing to share.
+                  </Text>
+                  <Text>
+                    Apart from programming in my spare time i relly enjoy
+                    playing chess, reading some criminal or waching F1 races
+                    with a group of friends.
+                  </Text>
+                </div>
+              </Info>
+              <Social>
+                <SocialIconWrapper href="https://github.com/damianfilipek81">
+                  <GitHubIcon />
+                </SocialIconWrapper>
+                <SocialIconWrapper href="https://www.linkedin.com/in/damianfilipek81/">
+                  <LinkedInIcon />
+                </SocialIconWrapper>
+              </Social>
             </ContentWrapper>
           </Wrapper>
           <Wrapper>
@@ -143,7 +190,7 @@ const AboutMe = () => {
             >
               My skills
             </Btn>
-            <ContentWrapper btn={btn === "mySkills" && true} direction={true}>
+            <ContentWrapper btn={btn === "mySkills" && true}>
               <SkillsContainer>
                 <h2>Logic</h2>
                 <div>

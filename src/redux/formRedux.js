@@ -1,4 +1,5 @@
 import Axios from "axios";
+export const getLoadingData = ({sendForm}) => sendForm.loading;
 
 const reducerName = "sendForm";
 const createActionName = (name) => `app/${reducerName}/${name}`;
