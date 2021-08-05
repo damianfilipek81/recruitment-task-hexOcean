@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { getDarkMode } from "./redux/darkModeRedux";
 import styled from "styled-components";
 import { MainLayout } from "./components/layout/MainLayout/MainLayout";
 import { createGlobalStyle } from "styled-components";
@@ -20,18 +22,17 @@ body{
 }
 `;
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#bbb",
-    },
-    secondary: {
-      main: "#F80808",
-    },
-  },
-  color: 'linear-gradient(90deg, rgba(196,76,184,1) 0%, rgba(121,9,115,1) 50%, rgba(221,0,134,1) 100%)'
-});
 const App = () => {
+  const darkMode = useSelector(getDarkMode);
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: darkMode ? "rgba(45,45, 45, 0.7)" : "rgba(189,189,189, 0.7)",
+        light: darkMode ? "rgba(255,255,255, 0.7)" : "rgba(45,45, 45, 0.7)",
+        dark: "rgba(45,45, 45, 0.7)",
+      },
+    },
+  });
   return (
     <ThemeProvider theme={theme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>

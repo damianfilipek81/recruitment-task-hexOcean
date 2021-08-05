@@ -3,9 +3,11 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { initialState } from './initialState';
+import { reducer as darkModeReducer} from './darkModeRedux';
 
 // define reducers
 const reducers = {
+  darkMode: darkModeReducer,
 };
 
 // add blank reducers for initial state properties without reducers

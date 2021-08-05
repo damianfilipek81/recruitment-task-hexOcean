@@ -13,6 +13,10 @@ export const TextFieldRoot = styled(TextField)`
   label,
   p {
     color: ${({ fontcolor }) => fontcolor};
+
+    &::before {
+      border-color: ${({ fontcolor }) => fontcolor};
+    }
   }
 `;
 
@@ -20,6 +24,9 @@ export const TimePickerRoot = styled(TimePicker)`
   div,
   label {
     color: ${({ fontcolor }) => fontcolor};
+    &::before {
+      border-color: ${({ fontcolor }) => fontcolor};
+    }
   }
 `;
 
@@ -28,6 +35,9 @@ export const FormControlRoot = styled(FormControl)`
   div,
   svg {
     color: ${({ fontcolor }) => fontcolor};
+    &::before {
+      border-color: ${({ fontcolor }) => fontcolor};
+    }
   }
 `;
 
@@ -48,21 +58,30 @@ export const InputLabelRoot = styled(InputLabel)`
 
 export const ButtonRoot = styled(Button)`
   width: 150px;
+  border: 1px solid !important;
+  border-color: ${({theme}) => theme} !important;
+  color: ${({theme}) => theme} !important;
 `;
 
 export const FormRoot = styled.form`
   display: flex;
   width: 400px;
   padding: 50px;
-  background: #fff;
+  background: ${({ theme }) => theme};
   border-radius: 15px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 999;
-  
+
   div {
     width: 100%;
     margin: 7px 0;
   }
+`;
+
+export const Error = styled.span`
+  color: #f12f42;
+  text-align: center;
+  font-size: 12px;
 `;

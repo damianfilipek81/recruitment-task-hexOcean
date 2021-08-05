@@ -2,7 +2,7 @@ import React from "react";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { Field } from "react-final-form";
 import PropTypes from "prop-types";
-import {TextFieldRoot, FormControlRoot} from '../../common/FormStyles';
+import { TextFieldRoot, FormControlRoot, Error } from "../../common/FormStyles";
 import { useTheme } from "@material-ui/core/styles";
 
 const PizzaOptions = ({ required }) => {
@@ -12,7 +12,7 @@ const PizzaOptions = ({ required }) => {
     isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`;
   const maxValue = (max) => (value) =>
     isNaN(value) || value <= max ? undefined : `Should be less than ${max}`;
-    const theme = useTheme().palette.primary;
+  const theme = useTheme().palette.primary;
 
   const composeValidators =
     (...validators) =>
@@ -38,19 +38,22 @@ const PizzaOptions = ({ required }) => {
           const { error, touched } = props.meta;
 
           return (
-            <TextFieldRoot
-              label="Number of slices"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              fontcolor={theme.main}
-              name={name}
-              value={value}
-              onChange={(e) => onChange(parseInt(e.target.value))}
-              InputProps={{ inputProps: { min: 1, max: 10 } }}
-              error={error && touched && true}
-            />
+            <React.Fragment>
+              <TextFieldRoot
+                label="Number of slices"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fontcolor={theme.main}
+                name={name}
+                value={value}
+                onChange={(e) => onChange(parseInt(e.target.value))}
+                InputProps={{ inputProps: { min: 1, max: 10 } }}
+                error={error && touched && true}
+              />
+              {error && touched && <Error>{error}</Error>}
+            </React.Fragment>
           );
         }}
       </Field>
@@ -69,24 +72,27 @@ const PizzaOptions = ({ required }) => {
           const { error, touched } = props.meta;
 
           return (
-            <TextFieldRoot
-              label="Diameter"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              fontcolor={theme.main}
-              name={name}
-              value={value}
-              error={error && touched && true}
-              onChange={(e) => onChange(parseFloat(e.target.value))}
-              InputProps={{
-                inputProps: { min: 10, max: 50, step: 0.1 },
-                endAdornment: (
-                  <InputAdornment position="end">Cm</InputAdornment>
-                ),
-              }}
-            />
+            <React.Fragment>
+              <TextFieldRoot
+                label="Diameter"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fontcolor={theme.main}
+                name={name}
+                value={value}
+                error={error && touched && true}
+                onChange={(e) => onChange(parseFloat(e.target.value))}
+                InputProps={{
+                  inputProps: { min: 10, max: 50, step: 0.1 },
+                  endAdornment: (
+                    <InputAdornment position="end">Cm</InputAdornment>
+                  ),
+                }}
+              />
+              {error && touched && <Error>{error}</Error>}
+            </React.Fragment>
           );
         }}
       </Field>

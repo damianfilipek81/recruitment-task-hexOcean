@@ -11,6 +11,7 @@ const Root = styled.div`
   text-align: center;
   line-height: 40px;
   font-size: 11px;
+  user-select: none;
 `;
 const Footer = () => {
   return <Root>Created by Damian Filipek</Root>;
