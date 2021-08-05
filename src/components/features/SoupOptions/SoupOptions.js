@@ -2,7 +2,7 @@ import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import { Field } from "react-final-form";
 import PropTypes from "prop-types";
-import { SliderRoot, InputLabelRoot, Error } from "../../common/FormStyles";
+import { SliderRoot, InputLabelRoot, Error } from "../../common/FormStyles/FormStyles";
 import { useTheme } from "@material-ui/core/styles";
 
 const SoupOptions = ({ required }) => {

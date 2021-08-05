@@ -4,10 +4,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { initialState } from './initialState';
 import { reducer as darkModeReducer} from './darkModeRedux';
+import { reducer as sendFormReducer} from './formRedux';
 
 // define reducers
 const reducers = {
   darkMode: darkModeReducer,
+  sendForm: sendFormReducer,
 };
 
 // add blank reducers for initial state properties without reducers

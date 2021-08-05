@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchSendForm } from "../../../redux/formRedux";
 import { Form as FormField, Field } from "react-final-form";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
@@ -9,17 +11,20 @@ import {
   FormControlRoot,
   FormRoot,
   ButtonRoot,
-  Error
-} from "../../common/FormStyles";
-import SandwitchOptions from "../SandwitchOptions/SandwitchOptions";
+  Error,
+  FormSent,
+} from "../../common/FormStyles/FormStyles";
+import SandwichOptions from "../SandwichOptions/SandwichOptions";
 import SoupOptions from "../SoupOptions/SoupOptions";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const Form = () => {
   const theme = useTheme().palette.primary;
   const [dishType, setDishType] = useState(null);
+  const [formSent, setFormSent] = useState(false);
+  const dispatch = useDispatch();
 
-  const dishTypes = ["pizza", "soup", "sandwitch"];
+  const dishTypes = ["pizza", "soup", "sandwich"];
   const newDate = new Date(0);
   const required = (value) => (value ? undefined : "Required");
 
@@ -28,19 +33,20 @@ const Form = () => {
       id: uuidv4(),
       name: values.name,
       preparation_time: values.preparation_time.toLocaleTimeString(),
-      type: values.type
+      type: values.type,
     };
 
-    if (values.type === 'pizza') {
+    if (values.type === "pizza") {
       data.no_of_slices = values.no_of_slices;
       data.diameter = values.diameter;
-    } else if (values.type === 'soup') {
+    } else if (values.type === "soup") {
       data.spiciness_scale = values.spiciness_scale;
-    } else if (values.type === 'sandwitch') {
+    } else if (values.type === "sandwich") {
       data.slices_of_bread = values.slices_of_bread;
     }
-
-    console.log(data)
+    dispatch(fetchSendForm(data));
+    setFormSent(true);
+    setTimeout(() => setFormSent(false), 5000);
   };
 
   const handleDishType = (e, onChange) => {
@@ -58,6 +64,7 @@ const Form = () => {
           }}
           theme={theme.light}
         >
+          {formSent && <FormSent theme={theme.main}>Form has been sent! </FormSent>}
           <Field name="name" validate={required}>
             {(props) => {
               const { name, value, onChange } = props.input;
@@ -122,7 +129,7 @@ const Form = () => {
                   >
                     <MenuItem value={"pizza"}>Pizza</MenuItem>
                     <MenuItem value={"soup"}>Soup</MenuItem>
-                    <MenuItem value={"sandwitch"}>Sandwitch</MenuItem>
+                    <MenuItem value={"sandwich"}>sandwich</MenuItem>
                   </Select>
                   {error && touched && <Error>{error}</Error>}
                 </FormControlRoot>
@@ -135,8 +142,8 @@ const Form = () => {
                 <FormControl key={dish}>
                   {dish === "pizza" ? (
                     <PizzaOptions required={required} />
-                  ) : dish === "sandwitch" ? (
-                    <SandwitchOptions required={required} />
+                  ) : dish === "sandwich" ? (
+                    <SandwichOptions required={required} />
                   ) : (
                     dish === "soup" && <SoupOptions required={required} />
                   )}
@@ -144,7 +151,9 @@ const Form = () => {
               )
             );
           })}
-          <ButtonRoot type="submit" theme={theme.main}>Send</ButtonRoot>
+          <ButtonRoot type="submit" theme={theme.main}>
+            Send
+          </ButtonRoot>
         </FormRoot>
       )}
     </FormField>

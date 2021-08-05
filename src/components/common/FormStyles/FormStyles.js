@@ -59,8 +59,8 @@ export const InputLabelRoot = styled(InputLabel)`
 export const ButtonRoot = styled(Button)`
   width: 150px;
   border: 1px solid !important;
-  border-color: ${({theme}) => theme} !important;
-  color: ${({theme}) => theme} !important;
+  border-color: ${({ theme }) => theme} !important;
+  color: ${({ theme }) => theme} !important;
 `;
 
 export const FormRoot = styled.form`
@@ -84,4 +84,9 @@ export const Error = styled.span`
   color: #f12f42;
   text-align: center;
   font-size: 12px;
+`;
+
+export const FormSent = styled.span`
+  color: ${({ theme }) => theme};
+  font-size: 25px;
 `;

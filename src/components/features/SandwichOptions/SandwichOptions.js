@@ -1,10 +1,10 @@
 import React from "react";
 import { Field } from "react-final-form";
 import PropTypes from "prop-types";
-import { TextFieldRoot, Error } from "../../common/FormStyles";
+import { TextFieldRoot, Error } from "../../common/FormStyles/FormStyles";
 import { useTheme } from "@material-ui/core/styles";
 
-const SandwitchOptions = ({ required }) => {
+const SandwichOptions = ({ required }) => {
   const mustBeNumber = (value) =>
     isNaN(value) ? "Must be a number" : undefined;
   const minValue = (min) => (value) =>
@@ -59,8 +59,8 @@ const SandwitchOptions = ({ required }) => {
   );
 };
 
-SandwitchOptions.propTypes = {
+SandwichOptions.propTypes = {
   required: PropTypes.func,
 };
 
-export default SandwitchOptions;
+export default SandwichOptions;
